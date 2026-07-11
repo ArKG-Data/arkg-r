@@ -1,6 +1,7 @@
 # arkg
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/ArKG-Data/arkg-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ArKG-Data/arkg-r/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Cliente de R para acceder al **Archaeology Knowledge Graph de Chile**
