@@ -1,7 +1,15 @@
+# Helper interno: aplica una funcion a una columna solo si existe
+apply_if_present <- function(df, col, fn) {
+  if (!is.null(df[[col]])) df[[col]] <- fn(df[[col]])
+  df
+}
+
 #' Obtener las dataciones arqueologicas (Fechado) de ArKG
 #'
 #' Recupera los fechados arqueologicos (radiocarbono y termoluminiscencia)
-#' del grafo ArKG, con sus atributos principales limpios y tipados.
+#' del grafo ArKG. Las consultas usan OPTIONAL y el post-procesado es
+#' defensivo: si la ontologia cambia y algun predicado desaparece, la
+#' columna correspondiente se devuelve vacia en lugar de producir un error.
 #'
 #' @param limit Numero maximo de filas a devolver (NULL = todas).
 #' @return Un `tibble` con las dataciones. Columnas: fechado, label, site,
@@ -30,18 +38,20 @@ WHERE {
   OPTIONAL { ?fechado wdt:P1343      ?source }
 } %s', lim)
   d <- arkg_sparql(q)
-  d$id       <- arkg_clean(d$fechado)
-  d$site     <- arkg_clean(d$site)
-  d$material <- arkg_clean(d$material)
-  d$c14_type <- arkg_clean(d$c14_type)
-  d$c14_age  <- suppressWarnings(as.numeric(d$c14_age))
-  d$sd       <- suppressWarnings(as.numeric(d$sd))
+  if (nrow(d) == 0L) return(d)
+  if (!is.null(d$fechado)) d$id <- arkg_clean(d$fechado)
+  d <- apply_if_present(d, "site",     arkg_clean)
+  d <- apply_if_present(d, "material", arkg_clean)
+  d <- apply_if_present(d, "c14_type", arkg_clean)
+  d <- apply_if_present(d, "c14_age",  function(x) suppressWarnings(as.numeric(x)))
+  d <- apply_if_present(d, "sd",       function(x) suppressWarnings(as.numeric(x)))
   d
 }
 
 #' Listar sitios arqueologicos (ArchSite) de ArKG
 #'
 #' Recupera los sitios arqueologicos del grafo ArKG con sus coordenadas.
+#' El post-procesado es defensivo ante cambios de la ontologia.
 #'
 #' @param limit Numero maximo de filas a devolver (NULL = todas).
 #' @return Un `tibble` con los sitios. Columnas: site, label, x, y, id.
@@ -62,8 +72,9 @@ SELECT DISTINCT ?site ?label ?x ?y WHERE {
   OPTIONAL { ?site :y ?y }
 } %s', lim)
   s <- arkg_sparql(q)
-  s$id <- arkg_clean(s$site)
-  s$x  <- suppressWarnings(as.numeric(s$x))
-  s$y  <- suppressWarnings(as.numeric(s$y))
+  if (nrow(s) == 0L) return(s)
+  if (!is.null(s$site)) s$id <- arkg_clean(s$site)
+  s <- apply_if_present(s, "x", function(x) suppressWarnings(as.numeric(x)))
+  s <- apply_if_present(s, "y", function(x) suppressWarnings(as.numeric(x)))
   s
 }

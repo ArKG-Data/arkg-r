@@ -14,6 +14,7 @@ Un \code{tibble} con los sitios. Columnas: site, label, x, y, id.
 }
 \description{
 Recupera los sitios arqueologicos del grafo ArKG con sus coordenadas.
+El post-procesado es defensivo ante cambios de la ontologia.
 }
 \examples{
 \dontrun{

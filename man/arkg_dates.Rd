@@ -15,7 +15,9 @@ material, method, c14_age, c14_type, sd, source, id.
 }
 \description{
 Recupera los fechados arqueologicos (radiocarbono y termoluminiscencia)
-del grafo ArKG, con sus atributos principales limpios y tipados.
+del grafo ArKG. Las consultas usan OPTIONAL y el post-procesado es
+defensivo: si la ontologia cambia y algun predicado desaparece, la
+columna correspondiente se devuelve vacia en lugar de producir un error.
 }
 \examples{
 \dontrun{
