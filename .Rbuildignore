@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.git$
+^\.gitignore$
+^README-hallazgos\.md$
+^cran-comments\.md$
+^\.github$

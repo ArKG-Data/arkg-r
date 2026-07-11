@@ -1,0 +1,23 @@
+Package: arkg
+Title: Access to the ArKG Chile Archaeological Dating Knowledge Graph
+Version: 0.1.0
+Authors@R: 
+    person("Victor", "Mendez", email = "victor.mendez@uc.cl", role = c("aut", "cre"))
+Description: Client for the Archaeology Knowledge Graph of Chile (ArKG,
+    <https://arkg.cl>), providing access to Chilean archaeological dates
+    (radiocarbon and thermoluminescence) via its SPARQL endpoint powered
+    by 'MillenniumDB'.
+License: CC BY-SA 4.0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+URL: https://arkg.cl, https://github.com/ArKG-Data/arkg-r
+BugReports: https://github.com/ArKG-Data/arkg-r/issues
+Imports:
+    httr2,
+    jsonlite,
+    tibble
+Suggests:
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
