@@ -5,7 +5,7 @@ test_that("arkg_endpoint respeta variable de entorno", {
 })
 
 test_that("arkg_endpoint tiene valor por defecto", {
-  withr::with_envvar(c(ARKG_SPARQL_ENDPOINT = ""), {
+  withr::with_envvar(c(ARKG_SPARQL_ENDPOINT = NA), {
     expect_equal(arkg_endpoint(), "https://arkg.cl/api/sparql")
   })
 })
