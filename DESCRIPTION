@@ -13,6 +13,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 URL: https://arkg.cl, https://github.com/ArKG-Data/arkg-r
 BugReports: https://github.com/ArKG-Data/arkg-r/issues
+Depends:
+    R (>= 4.1.0)
 Imports:
     httr2,
     jsonlite,
