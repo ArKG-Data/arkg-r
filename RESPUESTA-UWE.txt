@@ -1,0 +1,17 @@
+Dear Uwe,
+
+Thank you for the review.
+
+Regarding the flagged URL https://arkg.cl/api/sparql (Status 400): this
+is a valid SPARQL API endpoint. It returns 400 when accessed without a
+"query" parameter, which is the expected behaviour of a SPARQL endpoint,
+not a broken link.
+
+To avoid the false-positive in the URL check, I have replaced the
+reference in NEWS.md with the base project URL (https://arkg.cl). The
+endpoint URL now appears only in the package source code.
+
+The corrected package has been resubmitted.
+
+Best regards,
+Victor Mendez

@@ -1,0 +1,21 @@
+# PLAN DE REENVIO A CRAN - arkg 0.1.0
+# Ejecutar SOLO cuando https://arkg.cl vuelva a estar ONLINE.
+
+## 0. Verificar que el servidor volvio
+#    Invoke-WebRequest https://arkg.cl -TimeoutSec 10   (debe dar 200)
+
+## 1. (opcional) correr tests: ahora deberian PASAR (no SKIP)
+#    Rscript -e "devtools::test(reporter=''summary'')"
+
+## 2. Reenviar a win-builder (verifica desde servidor de CRAN)
+#    Rscript -e "devtools::check_win_devel()"
+#    -> esperar email (~30 min) -> confirmar 1 NOTE (New submission)
+
+## 3. Reenvio a CRAN (SESION INTERACTIVA, no Rscript -e):
+#    & "C:\Program Files\R\R-4.5.3\bin\R.exe" --no-save
+#    > devtools::release()
+#    Responder el checklist. "Ready to submit?" -> yes.
+
+## 4. Confirmar el email doble opt-in de CRAN (obligatorio).
+
+## 5. Responder al email de Uwe Ligges con el texto de RESPUESTA-UWE.txt

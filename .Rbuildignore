@@ -5,3 +5,7 @@
 ^README-hallazgos\.md$
 ^cran-comments\.md$
 ^\.github$
+^PLAN-REENVIO\.txt$
+^RESPUESTA-UWE\.txt$
+^CRAN-SUBMISSION$
+^_problems$
